@@ -1,17 +1,18 @@
 let base = 7
 let row = [];
-for (let i = 0; i < base ; i++){
-    sub = base
-    let row = []
-    let dif = base - i -1
+for (let i = 1; i < base+1; i++){
+    sub = base;
+    let row = [];
+    let dif = base - i;
     for (let j = 0; j < base; j++){
 
-        if(i == base-1 ){
+        if(i == base ){
             row.push("*")
-        }else if(i<Math.floor(base/2)){
+        }else if(i<Math.floor(base/2+1)){
             row.push(" ")
         }
-        else if(j == dif || j == base -1 - dif){
+        //only adding * for the specifics positions
+        else if(j == dif || j == base - dif-1){
             row.push("*");
         }else{
             row.push(" ")
