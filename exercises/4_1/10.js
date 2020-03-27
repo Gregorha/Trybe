@@ -12,10 +12,10 @@ switch(peca){
         movimento = "na diagonal quantas casas quiser"
         break;
         case "piao":
-        movimento = "em L sempre 3 casas para um lado e 2 virando 90 graus ou vice-versa"
+        movimento = "popopo"
         break;
         case "rei":
-        movimento = "em L sempre 3 casas para um lado e 2 virando 90 graus ou vice-versa"
+        movimento = "pipipi"
         break;
 }
 console.log("O(a) "+peca+" se move "+ movimento);
