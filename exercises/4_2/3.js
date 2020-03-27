@@ -1,6 +1,6 @@
 let base = 5
 for (let i = 0; i < base; i++){
-    let row = []
+    let row = [];
     for (let j =0; j<base; j++){
         if (j < base - i){
             row.push(" ");
