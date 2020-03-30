@@ -1,9 +1,9 @@
 function returnMin(arr){
-    let minvalue=arr[0];
+    let minValue=arr[0];
     let j = 0
         for (let i=0; i < arr.length; i++){
-            if (arr[i]<minvalue){
-                minvalue = arr[i];
+            if (arr[i]<minValue){
+                minValue = arr[i];
                 j = i;
             }
         }

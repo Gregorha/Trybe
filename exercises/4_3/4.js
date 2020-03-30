@@ -1,11 +1,11 @@
 function biggestName(arr){
-    let bigname = arr[0];
+    let bigName = arr[0];
     let j = 0
         for (let i=0; i < arr.length; i++){
-            if (arr[i].length>bigname.length){
-                bigname = arr[i];
+            if (arr[i].length>bigName.length){
+                bigName = arr[i];
             }
         }
-    return bigname;
+    return bigName;
 }
 console.log(biggestName(['José', 'Lucas', 'Nádia', 'Fernanda', 'Cairo', 'Joana']));

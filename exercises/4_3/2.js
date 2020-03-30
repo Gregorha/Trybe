@@ -1,9 +1,9 @@
 function returnMax(arr){
-    let maxvalue = 0;
+    let maxValue = 0;
     let j = 0
         for (let i=0; i < arr.length; i++){
-            if (arr[i]>maxvalue){
-                maxvalue = arr[i];
+            if (arr[i]>maxValue){
+                maxValue = arr[i];
                 j = i;
             }
         }
