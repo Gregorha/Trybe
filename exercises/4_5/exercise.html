@@ -55,6 +55,35 @@
   </head>
   <body>
     <script>
+        let firstExercise = document.createElement("h1");
+        firstExercise.innerHTML = "<p>Exercício 4.5 - JavaScript DOM</p>"
+        document.body.appendChild(firstExercise)
+        let secondExercise = document.createElement("div")
+        secondExercise.className = "main-content"
+        document.body.appendChild(secondExercise)
+        let thirdExercise = document.createElement("div")
+        thirdExercise.className = "center-content"
+        thirdExercise.innerHTML="<p>Texto do quarto exercício</p>"
+        document.body.firstElementChild.nextElementSibling.nextElementSibling.appendChild(thirdExercise)
+        let fifthExercise = document.createElement("div")
+        fifthExercise.className = "left-content"
+        document.body.firstElementChild.nextElementSibling.nextElementSibling.appendChild(fifthExercise)
+        let sixthExercise = document.createElement("div")
+        sixthExercise.className = "right-content"
+        document.body.firstElementChild.nextElementSibling.nextElementSibling.appendChild(sixthExercise)
+        let seventhExercise = document.createElement("img")
+        seventhExercise.className = "small-image"
+        seventhExercise.src = "https://picsum.photos/200"
+        document.getElementsByClassName("left-content")[0].appendChild(seventhExercise)
+        let valores = ["um", "dois", "tres", "quatro", "cinco", "seis", "sete", "oito", "nove", "dez"]
+        let eighthExercise = document.createElement("ul")
+        for (i = 0; i < valores.length; i++){
+            item = document.createElement("li")
+            item.appendChild(document.createTextNode(valores[i]))
+            eighthExercise.appendChild(item)
+        }
+        document.getElementsByClassName("right-content")[0].appendChild(eighthExercise)
+        
       // COLOQUE SEU CÓDIGO AQUI
     </script>
   </body>
