@@ -45,30 +45,33 @@
             Aliquam at eros neque. Duis et orci ac turpis congue vehicula quis eu magna. Pellentesque semper vulputate dolor. Ut aliquam a nibh sagittis volutpat. Integer eget nisl sagittis, vestibulum elit in, consequat tellus. Aliquam vehicula convallis urna, at viverra leo malesuada eget. Quisque tellus tortor, efficitur vitae maximus ullamcorper, tincidunt et elit. Donec in dui eget massa consectetur maximus. Vivamus eu tellus nec quam sodales varius a nec nunc. Praesent convallis nibh nulla. Fusce non finibus dui. Aenean ultrices pharetra odio et feugiat. Nulla ornare arcu id auctor vestibulum. Morbi ut euismod enim. Aliquam libero lacus, vehicula non mauris condimentum, vehicula rutrum lorem.</p>
     </div>
     <script>    
-
-    let BGInput = document.getElementById("colorBGInput")
-    let colorInput = document.getElementById("colorTxtInput")
-    let lineInput = document.getElementById("fontSizeInput")
-    let mainText = document.getElementById("mainText")
-    let radioElements = document.getElementsByName('fontStyle')
-    function checkRadio(){
-        for (let i = 0; i < radioElements.length; i++){
-            if(radioElements[i].checked == true){
-                selected = radioElements[i].value
-                mainText.style.fontFamily = selected
+    window.onload = function(){
+        let BGInput = document.getElementById("colorBGInput")
+        let colorInput = document.getElementById("colorTxtInput")
+        let lineInput = document.getElementById("fontSizeInput")
+        let mainText = document.getElementById("mainText")
+        let radioElements = document.getElementsByName('fontStyle')
+        function checkRadio(){
+            for (let i = 0; i < radioElements.length; i++){
+                if(radioElements[i].checked == true){
+                    selected = radioElements[i].value
+                    mainText.style.fontFamily = selected
+                }
             }
         }
+        for (let i = 0; i < radioElements.length; i++){
+            radioElements[i].addEventListener("click", checkRadio)
+        }
+        lineInput.addEventListener("input", function(){
+            mainText.style.lineHeight = Number(lineInput.value)
+        })
+        BGInput.addEventListener("change", function(){
+            document.querySelector("body").style.backgroundColor = BGInput.value
+        })
+        colorInput.addEventListener("change", function(){
+            mainText.style.color = colorInput.value
+        })
     }
-    for (let i = 0; i < radioElements.length; i++){
-        radioElements[i].addEventListener("click", checkRadio)
-    }
-    lineInput.addEventListener("input", function(){
-        mainText.style.lineHeight = Number(lineInput.value)
-    })
-    BGInput.addEventListener("change", function(){
-        document.querySelector("body").style.backgroundColor = BGInput.value
-    })
-        
     </script>
 </body>
 </html>
