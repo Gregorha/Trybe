@@ -56,6 +56,7 @@
                 if(radioElements[i].checked == true){
                     selected = radioElements[i].value
                     mainText.style.fontFamily = selected
+                    localStorage.setItem("radioInput", selected)
                 }
             }
         }
@@ -64,13 +65,30 @@
         }
         lineInput.addEventListener("input", function(){
             mainText.style.lineHeight = Number(lineInput.value)
+            localStorage.setItem("lineInput", lineInput.value)
         })
         BGInput.addEventListener("change", function(){
             document.querySelector("body").style.backgroundColor = BGInput.value
+            localStorage.setItem("BGInput", BGInput.value)
         })
         colorInput.addEventListener("change", function(){
             mainText.style.color = colorInput.value
+            localStorage.setItem("colorInput", colorInput.value)
         })
+
+        //Addind style if user had already chosen any style previously
+        if (localStorage.getItem("BGInput")){
+            document.querySelector("body").style.backgroundColor = localStorage.getItem("BGInput")
+        }
+        if (localStorage.getItem("lineInput")){
+            mainText.style.lineHeight = localStorage.getItem("lineInput")
+        }
+        if (localStorage.getItem("colorInput")){
+            mainText.style.color = localStorage.getItem("colorInput")
+        }
+        if (localStorage.getItem("radioInput")){
+            mainText.style.fontFamily = localStorage.getItem("radioInput")
+        }
     }
     </script>
 </body>
