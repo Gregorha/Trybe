@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <form id = "dados">
+    <fieldset>
+      <legend>Dados pessoais:</legend>
+      <label for='nome'>Nome:</label>
+      <input type = 'text' id="nome" maxlength="40" required>
+      <label for='email'>Email:</label>
+      <input type="text" id="email" maxlength="50" pattern = "\w+@\w+\.\w+" title = "Insira um email válido" required>
+      <label for='cpf'>CPF:</label>
+      <input type = 'text' id="cpf" maxlength="11" required>
+      <label for='endereco'>Endereço:</label>
+      <input type = 'text' id="endereco" maxlength="200" required>
+      <label for='cidade'>Cidade:</label>
+      <input type="text" id = "cidade" maxlength = 'cidade'required>
+      <label for='nome'>Estado:</label>
+      <select id="estado">
+      </select>
+    </fieldset>
+    <fieldset>
+      <legend>Dados do seu último emprego:</legend>
+      <label for="curriculo">Resumo do Currículo</label>
+      <textarea maxlength="1000" required></textarea>
+      <label for="cargo">Cargo</label>
+      <input type="text" id="cargo" maxlength="40" required>
+      <label for="descricaoCargo">Descrição do cargo</label>
+      <input type="text" id="descricaoCargo" maxlength="500" required>
+      <label for="datadeinicio">Data de início</label>
+      <input type="text" id="datadeinicio" placeholder = "DD/MM/AAAA" pattern = "[0-3][0-9]\/[0-1][0-9]\/[1-2][0-9]{3}" title = "data está errada" required>
+    </fieldset>
+  </form>
+  <button type="submit" form="dados" id='enviar' value="enviar">Enviar</button>
+  <button id= "clear">Clear</button>
+  <div id= "resume"></div>
+  <script>
+    let states = ["Acre (AC)", "Alagoas (AL)", "Amapá (AP)", "Amazonas (AM)", "Bahia (BA)", "Ceará (CE)",
+    "Distrito Federal (DF)", "Espírito Santo (ES)", "Goiás (GO)", "Maranhão (MA)", "Mato Grosso (MT)", "Mato Grosso do Sul (MS)", "Minas Gerais (MG)", "Pará (PA)", "Paraíba (PB)", "Paraná (PR)","Pernambuco (PE)", "Piauí (PI)", "Rio de Janeiro (RJ)", "Rio Grande do Norte (RN)", "Rio Grande do Sul (RS)", "Rondônia (RO)", "Roraima (RR)", "Santa Catarina (SC)", "São Paulo (SP)", "Sergipe (SE)", "Tocantins (TO)"]
+    const dados = document.getElementsByTagName("input")
+    const enviar = document.getElementById('enviar')
+    const resume = document.getElementById('resume')
+    const clear = document.getElementById('clear')
+
+    clear.addEventListener('click', () =>{
+      resume.innerHTML = '';
+      for (let i = 0; i < dados.length; i+=1){
+        dados[i].value = ''
+      }
+    })
+
+    enviar.addEventListener('click', (e)=>{
+      e.preventDefault();
+      let dadosArray = Array.from(dados)
+      dadosArray.map((dado) => {
+        let dadoValor = document.createElement('p')
+        dadoValor.innerHTML = dado.value
+        resume.appendChild(dadoValor)
+      })
+    })
+  
+    const comboBox = document.getElementById('estado')
+    states.map((estado) => {
+      let option = document.createElement('option')
+      option.innerHTML = estado
+      option.value = estado
+      comboBox.appendChild(option)
+    })
+    </script>
+</body>
+</html>
+
