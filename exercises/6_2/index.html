@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
+  <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
+</head>
+<body>
+  <div class = 'container'>
+  <form id = "dados">
+    <fieldset class="form-group">
+      <legend>Dados pessoais:</legend>
+      <div class = 'form-group'>
+        <label for='nome'>Nome:</label>
+        <input class= 'form-control' type = 'text' id="nome" maxlength="40" required>
+      </div>
+      <div class = "form-group">
+        <label for='email'>Email:</label>
+        <input class= 'form-control' id="email" class="form-control" type="email" placeholder="Email" name="email">
+      </div>
+      <div class = "form-group">
+        <label for='cpf'>CPF:</label>
+        <input class= 'form-control' type = 'text' id="cpf" maxlength="11" required>
+      </div>
+      <div class = "form-group">
+        <label for='endereco'>Endereço:</label>
+        <input class= 'form-control' type = 'text' id="endereco" maxlength="200" required>
+      </div>
+      <div class = "form-group">
+        <label for='cidade'>Cidade:</label>
+        <input class= 'form-control' type="text" id = "cidade" maxlength = 'cidade'required>
+      </div>
+      <div class = "form-group">
+        <label for='nome'>Estado:</label>
+        <select id="estado">
+      </div>
+      </select>
+    </fieldset>
+    <fieldset class="form-group">
+      <legend>Dados do seu último emprego:</legend>
+      <label for="curriculo">Resumo do Currículo</label>
+      <textarea maxlength="1000" required></textarea>
+      <label for="cargo">Cargo</label>
+      <input class= 'form-control' type="text" id="cargo" maxlength="40" required>
+      <label for="descricaoCargo">Descrição do cargo</label>
+      <input class= 'form-control' type="text" id="descricaoCargo" maxlength="500" required>
+      <label for="datadeinicio">Data de início</label>
+      <input class= 'form-control' type="text" id="datepicker" placeholder = "DD/MM/AAAA" pattern = "[0-3][0-9]\/[0-1][0-9]\/[1-2][0-9]{3}" title = "data está errada" required>
+    </fieldset>
+  </form>
+  <button class="btn btn-success" type="submit" form="dados" id='enviar' value="enviar">Enviar</button>
+  <button id= "clear" class="btn btn-warning">Clear</button>
+  <div id= "resume"></div>
+</div>
+  <script>
+    var picker = new Pikaday({ field: document.getElementById('datepicker') });
+    let states = ["Acre (AC)", "Alagoas (AL)", "Amapá (AP)", "Amazonas (AM)", "Bahia (BA)", "Ceará (CE)",
+    "Distrito Federal (DF)", "Espírito Santo (ES)", "Goiás (GO)", "Maranhão (MA)", "Mato Grosso (MT)", "Mato Grosso do Sul (MS)", "Minas Gerais (MG)", "Pará (PA)", "Paraíba (PB)", "Paraná (PR)","Pernambuco (PE)", "Piauí (PI)", "Rio de Janeiro (RJ)", "Rio Grande do Norte (RN)", "Rio Grande do Sul (RS)", "Rondônia (RO)", "Roraima (RR)", "Santa Catarina (SC)", "São Paulo (SP)", "Sergipe (SE)", "Tocantins (TO)"]
+    const dados = document.getElementsByTagName("input")
+    const enviar = document.getElementById('enviar')
+    const resume = document.getElementById('resume')
+    const clear = document.getElementById('clear')
+
+    clear.addEventListener('click', () =>{
+      resume.innerHTML = '';
+      for (let i = 0; i < dados.length; i+=1){
+        dados[i].value = ''
+      }
+    })
+
+    enviar.addEventListener('click', (e)=>{
+      e.preventDefault();
+      handleFormSubmit(form);
+      let dadosArray = Array.from(dados)
+      dadosArray.map((dado) => {
+        let dadoValor = document.createElement('p')
+        dadoValor.innerHTML = dado.value
+        resume.appendChild(dadoValor)
+      })
+    })
+
+    function handleFormSubmit(form, input) {
+      var errors = validate(form, constraints);
+    showErrors(form, errors || {});
+    if (!errors) {
+      showSuccess();
+      }
+    }
+
+    function showSuccess() {
+    alert("Success!");
+    }
+
+    function showErrors(form, errors) {
+      _.each(form.querySelectorAll("input[name], select[name]"), function(input) {
+        showErrorsForInput(input, errors && errors[input.name]);
+      });
+    }
+  
+    const comboBox = document.getElementById('estado')
+    states.map((estado) => {
+      let option = document.createElement('option')
+      option.innerHTML = estado
+      option.value = estado
+      comboBox.appendChild(option)
+    })
+  </script>
+  
+</body>
+</html>
+
