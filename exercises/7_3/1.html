@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    .grid-container{
+      display: grid;
+      grid-template-columns: 130px 130px 130px 130px 130px 130px 130px 130px;
+    }
+
+    #baralho{
+      width: 100px;
+    }
+
+    .carta-baralho{
+      width: 150px;
+      height: 150px;
+      transform: rotateY(180deg);
+      background-image: url("./cartas/cartas/verso-da-carta.png")!important
+    }
+
+    .carta-mesa{
+      width: 100px;
+      height: 135px;
+      background-size: cover;
+      transition: all 1s;
+    }
+
+  </style>
+  <title>Document</title>
+</head>
+<body>
+  <img id = 'baralho' src="./cartas/cartas/verso-da-carta.png">
+  <div id = 'mesa' class="grid-container">  
+  </div>
+  <script>
+    const mesa = document.getElementById('mesa')
+    const baralho = document.getElementById("baralho")
+    const images = ['cinco-de-ouros.png', 'nove-de-espadas.png', 'quatro-de-paus.png', 'seis-de-copas.png', 'sete-de-espadas.png', 'sete-de-paus.png', 'tres-de-ouros.png']
+    
+    function pickRandomCard(){
+      let card = `./cartas/cartas/${images[Math.floor(Math.random() * 7)]}`
+      let div = document.createElement('div')
+      div.style.width = '100px'
+      div.style.height = '135px'
+      div.style.backgroundSize = "cover"
+      div.style.transition = "all 1s"
+      div.style.backgroundImage = `url('./cartas/cartas/${images[Math.floor(Math.random() * 7)]}')`;
+      div.classList.add('carta-baralho')
+      mesa.appendChild(div)
+      setTimeout(() => {
+        div.classList.remove("carta-baralho")}, 0)
+    }
+    baralho.addEventListener('click', pickRandomCard)
+
+  </script>
+</body>
+</html>
