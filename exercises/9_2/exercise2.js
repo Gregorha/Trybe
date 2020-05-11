@@ -63,7 +63,9 @@ const books = [
   },
 ];
 
-
+//Gambiarra usando o string vazio como initial value para não pegar o primeiro objeto inteiro na primeira iteração
 const allNames = () => `Nomes:${books.reduce((acc, book, i) => i > 0 ? `${acc}, ${book.author.name}` : ` ${book.author.name}`, "")}.`
+
+console.log(allNames())
 
 assert.deepEqual(allNames(), "Nomes: George R. R. Martin, J. R. R. Tolkien, Isaac Asimov, Frank Herbert, Stephen King, H. P. Lovecraft.");
